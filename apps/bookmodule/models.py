@@ -18,3 +18,13 @@ class Book(models.Model):
 
     publisher = models.ForeignKey(Publisher, null=True, on_delete=models.SET_NULL)
     authors = models.ManyToManyField(Author)
+
+
+class Book7(models.Model):
+    title = models.CharField(max_length=50)
+    author = models.CharField(max_length=50)
+    price = models.FloatField(default=0.0)
+    edition = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return self.title

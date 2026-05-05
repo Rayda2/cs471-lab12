@@ -1,0 +1,12 @@
+<h2>Books (Forms)</h2>
+
+<a href="/books/lab9_part2/addbook">Add New Book</a>
+
+{% for b in books %}
+<p>
+    {{ b.title }} - {{ b.author }} - {{ b.price }}
+
+    <a href="/books/lab9_part2/editbook/{{ b.id }}">Edit</a>
+    <a href="/books/lab9_part2/deletebook/{{ b.id }}">Delete</a>
+</p>
+{% endfor %}
