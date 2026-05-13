@@ -4,6 +4,12 @@ from .models import Book, Publisher
 from django.db.models import Q, Count, Sum, Avg, Max, Min
 from .models import Book7
 from .forms import Book7Form
+from .models import Student11
+from .forms import Student11Form
+from .models import Student22
+from .forms import Student22Form
+from .models import Product11
+from .forms import Product11Form
 
 
 
@@ -219,3 +225,111 @@ def delete_book_form(request, id):
     book = Book7.objects.get(id=id)
     book.delete()
     return redirect('/books/lab9_part2/listbooks')
+
+
+def student11_list(request):
+    students = Student11.objects.all()
+    return render(request, 'bookmodule/student11/list.html', {'students': students})
+
+def student11_add(request):
+
+    if request.method == 'POST':
+        form = Student11Form(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/books/lab11/task1/list')
+
+    else:
+        form = Student11Form()
+
+    return render(request, 'bookmodule/student11/add.html', {'form': form})
+
+def student11_edit(request, id):
+
+    student = Student11.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = Student11Form(request.POST, instance=student)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/books/lab11/task1/list')
+
+    else:
+        form = Student11Form(instance=student)
+
+    return render(request, 'bookmodule/student11/add.html', {'form': form})
+
+def student11_delete(request, id):
+
+    student = Student11.objects.get(id=id)
+    student.delete()
+
+    return redirect('/books/lab11/task1/list')
+
+
+
+def student22_list(request):
+    students = Student22.objects.all()
+    return render(request, 'bookmodule/student22/list.html', {'students': students})
+
+def student22_add(request):
+
+    if request.method == 'POST':
+        form = Student22Form(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/books/lab11/task2/list')
+
+    else:
+        form = Student22Form()
+
+    return render(request, 'bookmodule/student22/add.html', {'form': form})
+
+def student22_edit(request, id):
+
+    student = Student22.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = Student22Form(request.POST, instance=student)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/books/lab11/task2/list')
+
+    else:
+        form = Student22Form(instance=student)
+
+    return render(request, 'bookmodule/student22/add.html', {'form': form})
+
+def student22_delete(request, id):
+
+    student = Student22.objects.get(id=id)
+    student.delete()
+
+    return redirect('/books/lab11/task2/list')
+
+
+def product11_add(request):
+
+    if request.method == 'POST':
+
+        form = Product11Form(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/books/lab11/task3/list')
+
+    else:
+        form = Product11Form()
+
+    return render(request, 'bookmodule/product11/add.html', {'form': form})
+
+
+def product11_list(request):
+
+    products = Product11.objects.all()
+
+    return render(request, 'bookmodule/product11/list.html', {'products': products})

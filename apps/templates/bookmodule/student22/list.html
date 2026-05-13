@@ -1,0 +1,51 @@
+<h1>Students - Many To Many</h1>
+
+<a href="/books/lab11/task2/add">Add Student</a>
+
+<br>
+<br>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Addresses</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for s in students %}
+
+    <tr>
+
+        <td>{{ s.name }}</td>
+
+        <td>{{ s.age }}</td>
+
+        <td>
+
+            {% for a in s.addresses.all %}
+            {{ a.city }} <br>
+            {% endfor %}
+
+        </td>
+
+        <td>
+
+            <a href="/books/lab11/task2/edit/{{ s.id }}">
+                Edit
+            </a>
+
+            |
+
+            <a href="/books/lab11/task2/delete/{{ s.id }}">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>

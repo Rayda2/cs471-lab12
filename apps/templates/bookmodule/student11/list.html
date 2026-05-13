@@ -1,0 +1,26 @@
+<h1>Students</h1>
+
+<a href="/books/lab11/task1/add">Add Student</a>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for s in students %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.age }}</td>
+        <td>{{ s.address }}</td>
+
+        <td>
+            <a href="/books/lab11/task1/edit/{{ s.id }}">Edit</a>
+
+            <a href="/books/lab11/task1/delete/{{ s.id }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
