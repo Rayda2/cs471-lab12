@@ -10,6 +10,7 @@ from .models import Student22
 from .forms import Student22Form
 from .models import Product11
 from .forms import Product11Form
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -226,7 +227,7 @@ def delete_book_form(request, id):
     book.delete()
     return redirect('/books/lab9_part2/listbooks')
 
-
+@login_required(login_url='/users/login')
 def student11_list(request):
     students = Student11.objects.all()
     return render(request, 'bookmodule/student11/list.html', {'students': students})
